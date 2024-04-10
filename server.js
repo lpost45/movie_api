@@ -2,27 +2,27 @@ const http = require('http'),
     fs = require('fs'),
     url = require('url');
 
-function newDate() {
-    return Date();
-}
-
-http.createServer((request, response) => {
-    let addr = request.url,
-        q = new URL(addr, 'http://' + request.headers.host),
-        filePath = '';
-
-    fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + newDate() + '\n\n', (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Added to log.');
-        }
-    });
-    if (q.pathname.includes('documentation')) {
-        filePath = (__dirname + '/documentation.html');
-    } else {
-        filePath = 'index.html';
+    function newDate() {
+        return Date();
     }
+
+    http.createServer((request, response) => {
+        let addr = request.url,
+            q = new URL(addr, 'http://' + request.headers.host),
+            filePath = '';
+
+        fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + newDate() + '\n\n', (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Added to log.');
+            }
+        });
+        if (q.pathname.includes('documentation')) {
+            filePath = (__dirname + '/documentation.html');
+        } else {
+            filePath = 'index.html';
+        }
 
     fs.readFile(filePath, (err, data) => {
         if (err) {
