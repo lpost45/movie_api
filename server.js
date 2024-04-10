@@ -3,7 +3,7 @@ const http = require('http'),
     url = require('url');
 
     function newDate() {
-        return Date.now();
+        return Date();
     }
 
     http.createServer((request, response) => {
