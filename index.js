@@ -14,6 +14,18 @@ const uuid = require('uuid');
 
 app.use(bodyParser.json());
 
+let user = [
+    {
+    id: '1',
+    name: 'John Smith',
+    emial: 'jsmith@mail.com',
+    favMovies: [{
+        title: 'Forest Gump',
+        genre: 'Comedy',
+        director: 'Robert Zemeckis'
+    }]
+}];
+
 let topMovies = [
     {
         title: 'The Shawshank Redemption',
@@ -83,7 +95,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/movies/:title', (req, res) => {
-    res.json(topmovies.find((movie) => {
+    res.json(topMovies.find((movie) => {
         return movie.title === req.params.title
     }));
 });
@@ -117,22 +129,7 @@ app.post('/users', (req, res) => {
 });
 
 app.put('/users/:id', (req, res) => {
-    const updatedUser = req.body;
-    let user = users.find((user) => {
-        return user.id === req.params.id
-    });
-    if (user) {
-        user = {
-            user: user.id,
-            fullname: updatedUser.fullname,
-            email: updatedUser.email,
-            favMovies: user.favMovies
-        };
-        res.status(200).json(user);
-    }
-    else {
-        res.status (400).send('User not registered');
-    }
+    res.send('Successful PUT request to update user')
 });
 
 app.post('/users/:id/:title', (req, res) => {
