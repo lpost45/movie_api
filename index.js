@@ -68,7 +68,7 @@ let topMovies = [
         genre: 'Fantasy'
     },
     {
-        title: 'Forest Gump',
+        title: 'Forrest Gump',
         director: 'Robert Zemeckis',
         genre: 'Comedy'
     },
