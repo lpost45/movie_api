@@ -34,28 +34,39 @@
             </tr>
             <tr>
                 <td>Return data about a single movie by title</td>
-                <td>/movies/:title</td>
+                <td>/movies/:Title</td>
                 <td>GET</td>
                 <td>None</td>
                 <td>A JSON object holding data about the requested movie ex:
                     <code>
                         {
-                            "title": "The Shawshank Redemption",
-                            "director": "Frank Darabont",
-                            "genre": "Thriller"
+                            "_id": ObjectId(12345678900)
+                            "Title": "The Shawshank Redemption",
+                            "Description": "Description of movie",
+                            "Genre": {
+                                "Name": "Thriller",
+                                "Description": "Description of Genre"
+                            }
+                            "Director": {
+                                "Name": "Director Name",
+                                "Bio": "Bio of Director",
+                                "Birthyear": "Birthyear of Director"
+                            }
+                            "ImageUrl": "movietitle.png",
+                            "Featured": true
                         }
                     </code>
                 </td>
             </tr>
             <tr>
-                <td>Return data about the genre by title</td>
-                <td>/movies/:title/genre</td>
+                <td>Return data about the genre by name</td>
+                <td>/genre/:Name</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about the genre of the specific movie ex:
+                <td>A JSON object holding data about the genre ex:
                     <code>
                         {
-                            "Thriller"
+                            "Description of Genre"
                         }
                     </code>
                 </td>
@@ -68,9 +79,11 @@
                 <td>A JSON object holding data about the director ex:
                     <code>
                         {
-                            "name": "Frank Darabont",
-                            "age": "65",
-                            "birthplace": "France" 
+                            "_id": ObjectId(12345678900)
+                            "Name": "Frank Darabont",
+                            "Bio": "Bio of Director",
+                            "Birthyear": "Birthyear of director",
+                            "Deathyear": "Deathyear of director"
                         }
                     </code>
                 </td>
@@ -82,47 +95,82 @@
                <td>A JSON object holding data from the user to be added ex: 
                     <code>
                         {
-                            "username": "lpost45",
-                            "email": "lpost45@live.com"
+                            "Name": "Jane Doe",
+                            "Email": "janedoe@mail.com",
+                            "Password": "password123",
+                            "Birthdate": {
+                                "$date": "1998-08-13T00:00.000Z"
+                            },
+                            "FavMovies": [
+                                "The Shawshank Redemption"
+                            ]
+
                         }
                     </code>
                </td>
                <td>A JSON object holding data from the user that has been added with uuid ex: 
                     <code>
                         {
-                            "username": "lpost45",
-                            "email": "lpost45@live.com",
-                            "id": "b8d9e773-2b36-4967-83a5-af57301053ab"
-                        }
+                            "_id": ObjectId(12345678900)
+                            "Name": "Jane Doe",
+                            "Email": "janedoe@mail.com",
+                            "Password": "password123",
+                            "Birthdate": {
+                                "$date": "1998-08-13T00:00.000Z"
+                            }
+                            "FavMovies": [
+                                "The Shawshank Redemption"
+                            ]
+                        }    
                     </code>
                </td>
             </tr>
             <tr>
-                <td>Update username</td>
-                <td>/users/:id</td>
+                <td>Update user</td>
+                <td>/users/:Name</td>
                 <td>PUT</td>
                 <td>A JSON object holding data from the user to be updated ex: 
                     <code>
                         {
-                            "username": "lpost95"
+                            "_id": ObjectId(12345678900)
+                            "Name": "John Doe",
+                            "Password": "password123",
+                            "Email": "janedoe@mail.com",
+                            "Birthdate": "1998-08-13T00:00.000Z",
+                            "FavMovies": ["The Shawshank Redemption"]
                         }
                     </code>
                 </td>
                 <td>A JSON holding data from the user that has been update ex: 
                     <code>
                         {
-                            "username": "lpost95",
-                            "emial": "lpost45@live.com"
+                            "_id": ObjectId(12345678900)
+                            "Name": "John Doe",
+                            "Password": "password123",
+                            "Email": "janedoe@mail.com",
+                            "Birthdate": "1998-08-13T00:00.000Z",
+                            "FavMovies": ["The Shawshank Redemption"]
                         }
                     </code>
                 </td>
             </tr>
             <tr>
                 <td>Update users favMovies</td>
-                <td>/users/:id/:title</td>
+                <td>/users/:Name/movies/:MovieID</td>
                 <td>POST</td>
-                <td>A JSON object holding data from the user about favMovies to be updated</td>
-                <td>A message returning if the users favMovies have been updated</td>
+                <td>None</td>
+                <td>A JSON object returning if the users favMovies have been updated ex.
+                    <code>
+                        {
+                            "_id": ObjectId(12345678900)
+                            "Name": "John Doe",
+                            "Password": "password123",
+                            "Email": "janedoe@mail.com",
+                            "Birthdate": "1998-08-13T00:00.000Z",
+                            "FavMovies": ["The Shawshank Redemption"]
+                        }
+                    </code>
+                </td>
             </tr>
             <tr>
                 <td>Delete a favMovies</td>
