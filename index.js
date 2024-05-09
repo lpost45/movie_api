@@ -223,7 +223,7 @@ app.put('/users/:Name', passport.authenticate('jwt', { session: false }), async 
 
 app.post('/users/:Name/movies/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Users.findOneAndUpdate({ Name: req.params.Name }, {
-        $push: { favMovies: req.params.MovieID}
+        $push: { FavMovies: req.params.MovieID}
     },
     { new: true})
     .then((updatedUser) => {
