@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
+const { check, validationResult } = require('express-validator');
+
 const Movies = Models.Movie;
 const Users = Models.User;
 const Directors = Models.Director;
@@ -26,6 +28,10 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true}));
 
 app.use(bodyParser.urlencoded({ extended: true}));
+
+const cors = require('cors');
+app.use(cors());
+
 let auth = require('./auth.js')(app);
 
 const passport = require('passport');
@@ -151,7 +157,18 @@ app.get("/director/:Name", passport.authenticate('jwt', { session: false }), asy
         });
 });
 
-app.post('/users', async (req, res) => {
+app.post('/users', 
+[
+    check('Name', 'Name is required').isLength({min: 5}),
+    check('Name', 'Name contains non alphanumeric characters - not allowed').isAlphanumeric(),
+    check('Passord', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid').isEmail()
+], async (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    let hashedPassword = Users.hashPassword(req.body.Password);
     await Users.findOne({ Name: req.body.Name })
     .then((user) => {
         if(user) {
@@ -160,7 +177,7 @@ app.post('/users', async (req, res) => {
             Users
                 .create({
                     Name: req.body.Name,
-                    Password: req.body.Password,
+                    Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday
                 })
@@ -261,6 +278,7 @@ app.delete('/users/:Name', passport.authenticate('jwt', { session: false }), asy
         });
 });
 
-app.listen(8080, () => {
-    console.log('My app is listening on port 8080.');
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+    console.log('Listening on Port ' + port);
 });
