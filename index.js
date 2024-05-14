@@ -162,7 +162,7 @@ app.post('/users',
 [
     check('Name', 'Name is required').isLength({min: 5}),
     check('Name', 'Name contains non alphanumeric characters - not allowed').isAlphanumeric(),
-    check('Passord', 'Password is required').not().isEmpty(),
+    check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
 ], async (req, res) => {
     let errors = validationResult(req);
