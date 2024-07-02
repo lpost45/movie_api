@@ -38,70 +38,70 @@ let auth = require('./auth.js')(app);
 const passport = require('passport');
 require('./passport.js');
 
-let user = [
-    {
-    id: '1',
-    name: 'John Smith',
-    emial: 'jsmith@mail.com',
-    favMovies: [{
-        title: 'Forest Gump',
-        genre: 'Comedy',
-        director: 'Robert Zemeckis'
-    }]
-}];
+// let user = [
+//     {
+//     id: '1',
+//     name: 'John Smith',
+//     emial: 'jsmith@mail.com',
+//     favMovies: [{
+//         title: 'Forest Gump',
+//         genre: 'Comedy',
+//         director: 'Robert Zemeckis'
+//     }]
+// }];
 
-let topMovies = [
-    {
-        title: 'The Shawshank Redemption',
-        director: 'Frank Darabont',
-        genre: 'Thriller'
-    },
-    {
-        title: 'The Godfather',
-        director: 'Francis Ford Coppola',
-        genre: 'Crime'
-    },
-    {
-        title: 'The Dark Knight',
-        director: 'Christopher Nolan',
-        genre: 'Action'
-    },
-    {
-        title: 'The Godfather Part 2',
-        director: 'Francis Ford Coppola',
-        genre: 'Crime'
-    },
-    {
-        title: '12 Angry Men',
-        director: 'Sidney Lumet',
-        genre: 'Crime'
-    },
-    {
-        title: 'The Lord of the Rings: Return of the King',
-        director: 'Peter Jackson',
-        genre: 'Fantasy'
-    },
-    {
-        title: 'Pulp Fiction',
-        director: 'Quentin Tarantino',
-        genre: 'Crime'
-    },
-    {
-        title: 'The Lord of the Rings: The Fellowship of the Ring',
-        director: 'Peter Jackson',
-        genre: 'Fantasy'
-    },
-    {
-        title: 'Forrest Gump',
-        director: 'Robert Zemeckis',
-        genre: 'Comedy'
-    },
-    {
-        title: 'The Lord of the Rings: The Two Towers',
-        director: 'Peter Jackson',
-        genre: 'Fantasy'
-    }
-];
+// let topMovies = [
+//     {
+//         title: 'The Shawshank Redemption',
+//         director: 'Frank Darabont',
+//         genre: 'Thriller'
+//     },
+//     {
+//         title: 'The Godfather',
+//         director: 'Francis Ford Coppola',
+//         genre: 'Crime'
+//     },
+//     {
+//         title: 'The Dark Knight',
+//         director: 'Christopher Nolan',
+//         genre: 'Action'
+//     },
+//     {
+//         title: 'The Godfather Part 2',
+//         director: 'Francis Ford Coppola',
+//         genre: 'Crime'
+//     },
+//     {
+//         title: '12 Angry Men',
+//         director: 'Sidney Lumet',
+//         genre: 'Crime'
+//     },
+//     {
+//         title: 'The Lord of the Rings: Return of the King',
+//         director: 'Peter Jackson',
+//         genre: 'Fantasy'
+//     },
+//     {
+//         title: 'Pulp Fiction',
+//         director: 'Quentin Tarantino',
+//         genre: 'Crime'
+//     },
+//     {
+//         title: 'The Lord of the Rings: The Fellowship of the Ring',
+//         director: 'Peter Jackson',
+//         genre: 'Fantasy'
+//     },
+//     {
+//         title: 'Forrest Gump',
+//         director: 'Robert Zemeckis',
+//         genre: 'Comedy'
+//     },
+//     {
+//         title: 'The Lord of the Rings: The Two Towers',
+//         director: 'Peter Jackson',
+//         genre: 'Fantasy'
+//     }
+// ];
 
 app.get('/', (req, res) => {
     res.send('Welcome to MyFlix')
