@@ -103,11 +103,13 @@ let topMovies = [
     }
 ];
 
+
 app.get('/', (req, res) => {
     res.send('Welcome to MyFlix')
 });
 
 app.use(express.static('public'));
+
 
 app.get('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
     await Movies.find()
@@ -119,6 +121,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), async (req,
             res.status(500).send("Error: " + err);
         });
 });
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -226,7 +229,8 @@ app.put('/users/:Name', passport.authenticate('jwt', { session: false }), async 
             Name: req.body.Name,
             Password: req.body.Password,
             Email: req.body.Email,
-            Birthday: req.body.Birthday
+            Birthday: req.body.Birthday,
+            FavMovies: req.body.FavMovies
         }
     },
     { new: true })
